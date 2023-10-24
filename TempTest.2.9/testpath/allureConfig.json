@@ -1,0 +1,9 @@
+{
+  "allure": {
+    "directory": "newDirectory",
+    "links": [
+      "https://example.org/{issue}",
+      "https://example.org/{tms}"
+    ]
+  }
+}
