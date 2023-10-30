@@ -12,17 +12,13 @@ public class Class1
     [OneTimeSetUp]
     public void OneTimeSetup()
     {
-        var path = Path.Combine(AppContext.BaseDirectory,@"testpath");
+        
+        var path = Path.Combine(AppContext.BaseDirectory,@"TestPath");
         var fileConfig = new DirectoryInfo(path).GetFiles().FirstOrDefault();
         Assert.IsNotNull(fileConfig);
         Assert.AreEqual(fileConfig.Name, AllureConstants.CONFIG_FILENAME);
-        path = Path.Combine(path, AllureConstants.CONFIG_FILENAME);
-        Environment.SetEnvironmentVariable(
-            AllureConstants.ALLURE_CONFIG_ENV_VARIABLE,
-            path,
-            EnvironmentVariableTarget.Process);
-        var allure = AllureLifecycle.Instance;
-        var actual = allure.AllureConfiguration.Directory;
+        Environment.SetEnvironmentVariable(AllureConstants.ALLURE_CONFIG_ENV_VARIABLE, path,EnvironmentVariableTarget.Process);
+        var actual = AllureLifecycle.Instance.AllureConfiguration.Directory;
         Assert.Multiple(() =>
         {
             Assert.AreEqual("newDirectory", actual);
